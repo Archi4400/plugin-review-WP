@@ -3,9 +3,8 @@ add_shortcode( 'callbackShortcodeForm', 'shortcodeForm' );
 function shortcodeForm() {
     ob_start();
 
-    $reviewPluginOptions = get_option('review-arthur');
-    ?>
-        <h3 style="text-align: center; margin-top: 35px;"><?php echo $reviewPluginOptions['title_form']; ?><h3/>
+    $reviewPluginOptions = get_option('review-arthur'); ?>
+    <h3 style="text-align: center; margin-top: 35px;"><?= $reviewPluginOptions['title_form']; ?><h3/>
     <form id="add_review" class="review-arthur">
         <div class="inputs">
             <input class="review-arthur__name" type="text" name="name" placeholder="Your name" required>
@@ -20,7 +19,7 @@ function shortcodeForm() {
                 <input class="rating__star" type="radio" name="rating" value="4" aria-label="Okay">
                 <input class="rating__star" type="radio" name="rating" value="5" aria-label="Super" checked>
             </div>
-            <?php //Условие на проверку , если в админке выключили получение отзывовов!
+            <?php // Условие на проверку , если в админке выключили получение отзывовов!
             if ( !$reviewPluginOptions['disable_submit'] ): ?>
                 <input class="btn" type="submit" value="Submit" <?php do_action( 'btn_color'); ?>>
             <?php else : ?>
@@ -31,12 +30,11 @@ function shortcodeForm() {
     <div class="overlay-review"></div>
     <div class="popup-review" id="popup-review-send">
         <span class="popup-review__close"></span>
-        <p class="popup-review__info"><?php echo $reviewPluginOptions['success_text']; ?></p>
+        <p class="popup-review__info"><?= $reviewPluginOptions['success_text']; ?></p>
     </div>
     <?php
     $output = ob_get_contents();
     ob_end_clean();
 
     return $output;
-    ?>
-<?php } ?>
+ }

@@ -18,18 +18,13 @@ $post_data = array(
     'post_author'   => 1,
     'post_status'   => 'pending',               # статус - «На утверждении»
     'post_type'     => 'reviews',               # тип записи - «Отзывы»
-    'post_title'    => $user_name, # заголовок отзыва
+    'post_title'    => $user_name,              # заголовок отзыва
     'post_content'  => $user_message,           # текст отзыва
-    'post_excerpt'  => $user_rating,           # рейтинг
-    // 'tax_input' => ['{Название таксономии}' => array($review_type)],
+    'post_excerpt'  => $user_rating,            # рейтинг
 );
 
 // Вставляем запись в базу данных
 $post_id = wp_insert_post( $post_data );
 
 // Добавляем остальные поля
-//update_field( 'rejting', $user_rating, $post_id ); # рейтинг ACF
 update_post_meta( $post_id, 'rating_key', $user_rating );
-
-// Необходимо для записи таксономии «tax_input»
-// wp_set_object_terms( $post_id, $review_type, '{Название таксономии}' );
