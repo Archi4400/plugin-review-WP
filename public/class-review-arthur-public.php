@@ -55,23 +55,25 @@ class review_arthur_Public {
 
 	}
 
-	//Подключение CSS
+    //============ Подключение CSS
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->review_arthur, plugin_dir_url( __FILE__ ) . 'css/review-arthur-public.min.css', array(), $this->version, 'all' );
 	}
 
-    //Побключение JS
+    //============ Побключение JS
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->review_arthur, plugin_dir_url( __FILE__ ) . 'js/review-arthur-public.js', array( 'jquery' ), $this->version, true );
 	}
 
-	//============
-//цвет для кнопки из админки
+	//============ цвет для кнопки из админки
     public function add_color_btn(){
 
-        if( !empty($this->my_plugin_options['btn_color']) )
+	    $btnBackgroundColor = $this->my_plugin_options['btn_color'];
+	    $btnTextColor = $this->my_plugin_options['btn_color_text'];
+
+        if( !empty($btnBackgroundColor) )
         {
-            echo 'style="color:' . $this->my_plugin_options['btn_color_text'] . ' ; background:' . $this->my_plugin_options['btn_color'] . '; "';
+            echo "style='color: $btnTextColor; background: $btnBackgroundColor;'";
         }
     }
 }
